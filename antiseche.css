@@ -1,0 +1,106 @@
+@import url('style.css');
+
+.nav-btn {
+  display: block; margin-top: 10px; font-size: 12px;
+  color: var(--color-success); text-decoration: none;
+  border: 1px solid var(--color-success); padding: 5px 10px;
+  border-radius: 5px; width: fit-content; margin: 10px auto 0;
+  transition: all 0.3s;
+}
+.nav-btn:hover { background: rgba(57, 255, 20, 0.1); box-shadow: 0 0 10px rgba(57, 255, 20, 0.4); }
+
+/* LAYOUT SPÉCIFIQUE AU MODE COURS */
+.learn-layout { display: flex; flex-direction: row; align-items: flex-start; }
+@media (max-width: 768px) { .learn-layout { flex-direction: column; } }
+.tabs-container { display: flex; gap: 15px; max-width: 1200px; margin: 20px auto 0; padding: 0 15px; }
+
+/* PROGRESSION */
+.progress-bar-container { width: 100%; height: 12px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; }
+.progress-bar { height: 100%; width: 0%; background: var(--accent-color); box-shadow: 0 0 10px var(--accent-glow); transition: width 0.5s ease; }
+
+/* STYLES ISSUS DE LA FICHE IHM-S2 */
+pre { background: #141824; border: 1px solid rgba(108,99,255,0.3); padding: 12px; border-radius: 8px; overflow-x: auto; margin: 10px 0; font-family: monospace; font-size: 13px; line-height: 1.5; }
+code { color: #c5d3f6; font-family: monospace; }
+.kw { color: #a09af8; } .fn { color: #79d9f5; } .str { color: #98f5c4; } .cmt { color: #505870; font-style: italic; } .num { color: #f8b97e; } .cls { color: #f5c97e; }
+
+.note { background: rgba(108,99,255,0.08); border-left: 3px solid #6c63ff; padding: 0.6rem 0.8rem; border-radius: 0 6px 6px 0; font-size: 13px; margin: 10px 0; }
+.note.warn { background: rgba(255,107,107,0.08); border-left-color: #ff6b6b; }
+.note.tip { background: rgba(0,212,170,0.08); border-left-color: #00d4aa; }
+
+.tag { font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 800; text-transform: uppercase; }
+.tag-js { background: rgba(108,99,255,0.2); color: #a09af8; border: 1px solid rgba(108,99,255,0.3); }
+.tag-dom { background: rgba(0,212,170,0.2); color: #00d4aa; border: 1px solid rgba(0,212,170,0.3); }
+.tag-async { background: rgba(255,107,107,0.2); color: #ff8a8a; border: 1px solid rgba(255,107,107,0.3); }
+.tag-obj { background: rgba(255,169,82,0.2); color: #ffb874; border: 1px solid rgba(255,169,82,0.3); }
+.tag-bonus { background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--border-color); }
+
+.list { list-style: none; display: flex; flex-direction: column; gap: 4px; font-size: 13px; margin-top: 10px; }
+.list li::before { content: "→ "; color: #6c63ff; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border-color); color: var(--accent-color); }
+td { padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+
+/* BARRE DE RECHERCHE & BOUTONS FILTRES */
+.search-input { border: 1px solid var(--border-color); background: var(--input-bg); color: var(--text-main); padding: 10px 14px; font-size: 13px; width: 100%; border-radius: 8px; margin-bottom: 15px; }
+.search-input:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 8px var(--accent-glow); }
+
+.filter-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter-btn { background: var(--bg-widget); border: 1px solid var(--border-color); color: var(--text-muted); padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; font-weight: bold;}
+.filter-btn:hover { border-color: var(--accent-color); color: var(--text-main); }
+.filter-btn.active { background: var(--accent-color); color: #000; border-color: var(--accent-color); }
+
+
+/* ========================================================
+   NOUVEAU LAYOUT : GRILLE MASONRY (Comme sur l'image)
+   ======================================================== */
+.dico-section-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin: 30px 0 15px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dico-grid {
+  display: grid;
+  /* C'est cette ligne qui gère le responsive automatique (3 col, puis 2, puis 1) ! */
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.dico-card {
+  background: var(--bg-widget);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dico-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px var(--accent-glow);
+}
+
+.dico-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 5px;
+}
+
+.dico-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  flex: 1;
+  margin: 0;
+}

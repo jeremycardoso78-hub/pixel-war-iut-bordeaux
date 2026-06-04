@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antisèche JS - Entraînement</title>
+    <link rel="stylesheet" href="antiseche.css">
+    <script src="antiseche.js" defer></script>
+</head>
+<body>
+
+    <header>
+        Antisèche IHM-S2
+        <a href="index.html" class="nav-btn">🎮 Retour au Pixel War</a>
+    </header>
+
+    <div class="tabs-container">
+        <button class="team-btn active-team" id="tab-cours" onclick="switchView('cours')">📚 Mode Cours</button>
+        <button class="team-btn" id="tab-dico" onclick="switchView('dico')">🔍 Dictionnaire JS Complet</button>
+    </div>
+
+    <div class="layout learn-layout" id="view-cours">
+        <aside class="top-row" style="flex: 0.3; flex-direction: column;">
+            <div class="widget">
+                <div class="widget-title">Ta Progression</div>
+                <div class="widget-body">
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+                    <p id="progress-text" class="timer-msg" style="margin-top: 10px;">0% complété</p>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">Chapitres</div>
+                <div class="widget-body">
+                    <div class="team-btns" style="flex-direction: column;" id="chapter-list"></div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="grille-container" style="flex: 0.7; flex-direction: column; justify-content: flex-start;">
+            <div class="widget" style="width: 100%;">
+                <div class="widget-title" id="lesson-title">Sélectionne un chapitre</div>
+                <div class="widget-body">
+                    <div id="lesson-content" style="line-height: 1.6; font-size: 14px;">
+                        Bienvenue dans ton antisèche ! Sélectionne un chapitre à gauche pour commencer l'entraînement.
+                    </div>
+                    <hr style="border-color: var(--border-color); margin: 20px 0;">
+                    <button class="team-btn" id="validate-btn" style="display: none; width: 100%;">✅ J'ai compris ce concept !</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <div class="layout" id="view-dico" style="display: none; flex-direction: column;">
+        
+        <div class="widget" style="width: 100%; margin-bottom: 10px;">
+            <div class="widget-title">Filtres et Recherche Rapide</div>
+            <div class="widget-body" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="search-dict" placeholder="Rechercher une notion, un mot-clé (ex: fetch, DOM...)" class="search-input" style="margin-bottom: 0;">
+                
+                <div class="filter-btns" id="filter-container">
+                    <button class="filter-btn active" onclick="filterCategory('Tout')">Tout</button>
+                    <button class="filter-btn" onclick="filterCategory('Bases JS')">Bases JS</button>
+                    <button class="filter-btn" onclick="filterCategory('Objets')">Objets</button>
+                    <button class="filter-btn" onclick="filterCategory('DOM')">DOM</button>
+                    <button class="filter-btn" onclick="filterCategory('Async')">Async / Fetch</button>
+                    <button class="filter-btn" onclick="filterCategory('Bonus')">Bonus</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="dict-grid-container" style="width: 100%;"></div>
+
+    </div>
+
+</body>
+</html>
