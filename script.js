@@ -92,7 +92,6 @@ const cxn = async (button, equipe) => {
         if(response.ok){
             msgServ.style.color = "green";
             msgServ.innerHTML = data.msg;
-            button.style.backgroundColor = "green";
             equipeValite = true;
         }
         
