@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelWar</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header>Pixel War</header>
+
+    <div class="layout">
+
+        <div class="top-row">
+            <div class="widget">
+                <div class="widget-title">Identification obligatoire</div>
+                <div class="widget-body">
+                    <input type="text" id="userId" value="9aZAPC8f4d3b" placeholder="Entre ton UID ici...">
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">Choisir une couleur</div>
+                <div class="widget-body">
+                    <input type="color" id="colorPicker" value="#ff0000"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="grille-container">
+            <div id="grille"></div>
+        </div>
+
+        <div class="bottom-row">
+            <div class="widget">
+                <div class="widget-title">Temps d'attente avant modification</div>
+                <div class="widget-body">
+                    <span class="timer-msg" id="waitMsg">Vérification du statut...</span>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">Choisir votre équipe :</div>
+                <div class="widget-body">
+                    <div class="team-btns">
+                        <button class="team-btn" id="btn-team-1" onclick="cxn(this,1)">1</button>
+                        <button class="team-btn" id="btn-team-2" onclick="cxn(this,2)">2</button>
+                        <button class="team-btn" id="btn-team-3" onclick="cxn(this,3)">3</button>
+                        <button class="team-btn" id="btn-team-4" onclick="cxn(this,4)">4</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">Dernière information du serveur :</div>
+                <div class="widget-body">
+                    <span class="server-msg" id="serverMsg">En attente de vos actions.</span>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</body>
+</html>

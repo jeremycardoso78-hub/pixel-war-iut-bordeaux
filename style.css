@@ -1,0 +1,276 @@
+/* ─── VARIABLES & COMPORTEMENT DE BASE ─────────────────── */
+:root {
+  --bg-body: #0a0b10;
+  --bg-widget: #121420;
+  --bg-widget-body: #1a1d30;
+  --text-main: #f0f3f8;
+  --text-muted: #8a94a6;
+  
+  --accent-color: #00f0ff;
+  --accent-glow: rgba(0, 240, 255, 0.4);
+  --border-color: #242942;
+  --input-bg: #0d0f18;
+
+  --color-success: #39ff14;
+  --color-error: #ff3131;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-body: #f4f6fa;
+    --bg-widget: #ffffff;
+    --bg-widget-body: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --accent-color: #4f46e5;
+    --accent-glow: rgba(79, 70, 229, 0.2);
+    --border-color: #e2e8f0;
+    --input-bg: #ffffff;
+  }
+}
+
+/* ─── RESET & CONFIGURATION GLOBALE ───────────────────── */
+*, *::before, *::after { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  background: var(--bg-body);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ─── HEADER ──────────────────────────────────────────── */
+header {
+  background: var(--bg-widget);
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  letter-spacing: 4px;
+  border-bottom: 2px solid var(--accent-color);
+  box-shadow: 0 4px 20px var(--accent-glow);
+  text-shadow: 0 0 10px var(--accent-color);
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 2px 10px var(--accent-glow); text-shadow: 0 0 8px var(--accent-color); }
+  50% { box-shadow: 0 4px 25px rgba(0, 240, 255, 0.6); text-shadow: 0 0 15px var(--accent-color); }
+}
+
+/* ─── NOUVEAU LAYOUT EN ÉTAGES HAUT / MILIEU / BAS ────── */
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .layout { padding: 25px; }
+}
+
+/* Rangée du haut (ID et Couleur côte à côte) */
+.top-row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .top-row {
+    flex-direction: row;
+  }
+  .top-row .widget {
+    flex: 1;
+  }
+}
+
+/* Rangée du bas (Widgets de Statut) */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .bottom-row {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+/* ─── WIDGETS ─────────────────────────────────────────── */
+.widget {
+  background: var(--bg-widget);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent-color);
+}
+
+.widget-title {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--accent-color);
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.widget-body {
+  background: var(--bg-widget-body);
+  padding: 16px;
+}
+
+/* ─── ZONE DE LA GRILLE ───────────────────────────────── */
+.grille-container {
+  max-width: 100%;
+  overflow-x: auto;
+  background: var(--bg-widget);
+  padding: 15px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#grille {
+  display: grid;
+  gap: 0px;
+  background: #000;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+#grille div {
+  transition: filter 0.1s ease, transform 0.1s ease;
+}
+#grille div:hover {
+  filter: brightness(1.4);
+  transform: scale(1.1);
+  z-index: 10;
+  box-shadow: 0 0 4px rgba(255,255,255,0.5);
+}
+
+/* ─── CONFIGURATION DES INPUTS ────────────────────────── */
+#userId {
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+  color: var(--text-main);
+  padding: 10px 14px;
+  font-size: 13px;
+  font-family: monospace;
+  width: 100%;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+#userId:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+#colorPicker {
+  width: 100%;
+  height: 42px;
+  padding: 2px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#colorPicker::-webkit-color-swatch-wrapper { padding: 0; }
+#colorPicker::-webkit-color-swatch { border: none; border-radius: 6px; }
+
+.timer-msg {
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─── BOUTONS D'ÉQUIPES ───────────────────────────────── */
+.team-btns { 
+  display: flex; 
+  gap: 8px; 
+  width: 100%; 
+}
+
+.team-btn {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--input-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-btn:hover:not(:disabled) {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.team-btn.active-team {
+  background: var(--color-success) !important;
+  color: #000000 !important;
+  border-color: var(--color-success) !important;
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.4);
+  transform: scale(1.03);
+}
+
+.team-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: var(--border-color);
+}
+
+/* ─── MESSAGES DU SERVEUR ─────────────────────────────── */
+.server-msg {
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: break-word;
+  display: inline-block;
+  padding: 4px 0;
+}
+
+.server-msg.error { 
+  color: var(--color-error); 
+  text-shadow: 0 0 8px rgba(255, 49, 49, 0.2);
+}
+
+.server-msg.success { 
+  color: var(--color-success); 
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.2);
+}
