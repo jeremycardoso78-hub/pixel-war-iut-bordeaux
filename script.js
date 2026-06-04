@@ -61,7 +61,7 @@ const colorierPixel = async (color, indexColonne, indexLigne, pixel) => {
         body : JSON.stringify(formData)
     });
     const data = await response.json();
-    if(response){
+    if(response.ok){
         pixel.style.backgroundColor = color;
         msgServ.style.color = "green";
         msgServ.innerHTML = data.msg;
@@ -89,7 +89,7 @@ const cxn = async (button, equipe) => {
         });
             
             const data = await response.json();
-        if(response){
+        if(response.ok){
             msgServ.style.color = "green";
             msgServ.innerHTML = data.msg;
             button.style.backgroundColor = "green";
