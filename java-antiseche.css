@@ -1,0 +1,173 @@
+@import url('style.css');
+
+.nav-btn {
+  display: block; margin-top: 10px; font-size: 12px;
+  color: var(--color-success); text-decoration: none;
+  border: 1px solid var(--color-success); padding: 5px 10px;
+  border-radius: 5px; width: fit-content; margin: 10px auto 0;
+  transition: all 0.3s;
+}
+.nav-btn:hover { background: rgba(57, 255, 20, 0.1); box-shadow: 0 0 10px rgba(57, 255, 20, 0.4); }
+
+.learn-layout { display: flex; flex-direction: row; align-items: flex-start; }
+@media (max-width: 768px) { .learn-layout { flex-direction: column; } }
+.tabs-container { display: flex; gap: 15px; max-width: 1200px; margin: 20px auto 0; padding: 0 15px; }
+
+/* PROGRESSION */
+.progress-bar-container { width: 100%; height: 12px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; }
+.progress-bar { height: 100%; width: 0%; background: #ff8a00; box-shadow: 0 0 10px rgba(255,138,0,0.5); transition: width 0.5s ease; }
+.active-team { background: #ff8a00 !important; color: #000 !important; border-color: #ff8a00 !important; }
+
+/* CODE & NOTES */
+pre { background: #141824; border: 1px solid rgba(255,138,0,0.3); padding: 12px; border-radius: 8px; overflow-x: auto; margin: 10px 0; font-family: monospace; font-size: 13px; line-height: 1.5; }
+code { color: #c5d3f6; font-family: monospace; }
+.kw { color: #ff8a00; font-weight:bold; } .fn { color: #79d9f5; } .str { color: #98f5c4; } .cmt { color: #505870; font-style: italic; } .cls { color: #a09af8; font-weight:bold; }
+
+.note { background: rgba(255,138,0,0.08); border-left: 3px solid #ff8a00; padding: 0.6rem 0.8rem; border-radius: 0 6px 6px 0; font-size: 13px; margin: 10px 0; }
+.note.warn { background: rgba(255,49,49,0.08); border-left-color: #ff3131; }
+.list { list-style: none; display: flex; flex-direction: column; gap: 4px; font-size: 13px; margin-top: 10px; }
+.list li::before { content: "→ "; color: #ff8a00; }
+
+/* TAGS SPÉCIFIQUES JAVA */
+.tag { font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 800; text-transform: uppercase; }
+.tag-poo { background: rgba(255,138,0,0.2); color: #ff8a00; border: 1px solid rgba(255,138,0,0.3); }
+.tag-collec { background: rgba(0,212,170,0.2); color: #00d4aa; border: 1px solid rgba(0,212,170,0.3); }
+.tag-uml { background: rgba(108,99,255,0.2); color: #a09af8; border: 1px solid rgba(108,99,255,0.3); }
+.tag-poly { background: rgba(0, 240, 255, 0.2); color: #00f0ff; border: 1px solid rgba(0, 240, 255, 0.3); }
+.tag-exc { background: rgba(255, 49, 49, 0.2); color: #ff3131; border: 1px solid rgba(255, 49, 49, 0.3); }
+.tag-qual { background: rgba(57, 255, 20, 0.2); color: #39ff14; border: 1px solid rgba(57, 255, 20, 0.3); }
+.tag-stream { background: rgba(255, 0, 255, 0.2); color: #ff00ff; border: 1px solid rgba(255, 0, 255, 0.3); }
+
+/* RECHERCHE ET GRILLE */
+.search-input { border: 1px solid var(--border-color); background: var(--input-bg); color: var(--text-main); padding: 10px 14px; font-size: 13px; width: 100%; border-radius: 8px; margin-bottom: 15px; }
+.search-input:focus { outline: none; border-color: #ff8a00; box-shadow: 0 0 8px rgba(255,138,0,0.4); }
+
+.filter-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter-btn { background: var(--bg-widget); border: 1px solid var(--border-color); color: var(--text-muted); padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; font-weight: bold;}
+.filter-btn:hover { border-color: #ff8a00; color: var(--text-main); }
+.filter-btn.active { background: #ff8a00; color: #000; border-color: #ff8a00; }
+
+.dico-section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 1px solid var(--border-color); }
+.dico-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 15px; margin-bottom: 30px; }
+.dico-card { background: var(--bg-widget); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, border-color 0.3s ease; }
+.dico-card:hover { border-color: #ff8a00; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,138,0,0.2); }
+.dico-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 5px; }
+.dico-card h3 { font-size: 15px; font-weight: 600; color: #fff; flex: 1; margin: 0; }
+/* ========================================================
+   ANIMATION ET STYLE DES FLASHCARDS JAVA (Nouveau)
+   ======================================================== */
+.flashcard {
+  background-color: transparent;
+  width: 100%;
+  height: 140px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flashcard.is-flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-widget);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.flashcard-front {
+  color: var(--text-main);
+}
+.flashcard-back {
+  color: #ff8a00;
+  transform: rotateY(180deg);
+  border-color: #ff8a00;
+  background: rgba(255, 138, 0, 0.05); /* Lueur orange Java */
+}
+.fc-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* ========================================================
+   ANIMATION ET GRILLE DES FLASHCARDS JAVA
+   ======================================================== */
+.flashcards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.flashcard {
+  background-color: transparent;
+  width: 100%;
+  height: 180px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flashcard.is-flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-widget);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.flashcard-front {
+  color: var(--text-main);
+}
+
+.flashcard-back {
+  color: #ff8a00;
+  transform: rotateY(180deg);
+  border-color: #ff8a00;
+  background: rgba(255, 138, 0, 0.05); /* Lueur orange Java */
+  overflow-y: auto;
+}
+
+.fc-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

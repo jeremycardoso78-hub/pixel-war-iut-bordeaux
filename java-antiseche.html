@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antisèche Java - IUT</title>
+    <link rel="stylesheet" href="java-antiseche.css">
+    <script src="java-antiseche.js" defer></script>
+</head>
+<body>
+
+    <header>
+        Antisèche Java (R2.01)
+        <a href="index.html" class="nav-btn">🎮 Retour au Projet Principal</a>
+    </header>
+
+    <div class="tabs-container">
+        <button class="team-btn active-team" id="tab-cours" onclick="switchView('cours')">📚 Progression Cours</button>
+        <button class="team-btn" id="tab-dico" onclick="switchView('dico')">🔍 Dictionnaire Java Complet</button>
+    </div>
+
+    <div class="layout learn-layout" id="view-cours">
+        <aside class="top-row" style="flex: 0.3; flex-direction: column;">
+            <div class="widget">
+                <div class="widget-title">Ta Progression Java</div>
+                <div class="widget-body">
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+                    <p id="progress-text" class="timer-msg" style="margin-top: 10px;">0% complété</p>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">Chapitres</div>
+                <div class="widget-body">
+                    <div class="team-btns" style="flex-direction: column;" id="chapter-list"></div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="grille-container" style="flex: 0.7; flex-direction: column; justify-content: flex-start;">
+            <div class="widget" style="width: 100%;">
+                <div class="widget-title" id="lesson-title">Sélectionne un chapitre</div>
+                <div class="widget-body">
+                    <div id="lesson-content" style="line-height: 1.6; font-size: 14px;">
+                        Bienvenue dans ton antisèche Java ! Sélectionne un chapitre à gauche.
+                    </div>
+                    
+                    <hr style="border-color: var(--border-color); margin: 30px 0;">
+                    
+                    <div id="flashcard-section" style="display: none;">
+                        <h3 style="color: #ff8a00; margin-bottom: 15px; font-size: 16px;">🧠 Entraînement : Retourne toutes les cartes !</h3>
+                        
+                        <div id="flashcards-container" class="flashcards-grid"></div>
+
+                        <button class="team-btn" id="validate-btn" style="display: none; width: 100%; margin-top: 25px; padding: 15px; font-size: 14px;">✅ J'ai tout compris ! (Valider le chapitre)</button>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="layout" id="view-dico" style="display: none; flex-direction: column;">
+        <div class="widget" style="width: 100%; margin-bottom: 10px;">
+            <div class="widget-title">Filtres et Recherche Rapide</div>
+            <div class="widget-body" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="search-dict" placeholder="Rechercher une notion (ex: extends, try, Stream, Refactor...)" class="search-input" style="margin-bottom: 0;">
+                
+                <div class="filter-btns" id="filter-container">
+                    <button class="filter-btn active" onclick="filterCategory('Tout')">Tout</button>
+                    <button class="filter-btn" onclick="filterCategory('Bases POO')">Bases POO</button>
+                    <button class="filter-btn" onclick="filterCategory('Collections')">Collections</button>
+                    <button class="filter-btn" onclick="filterCategory('UML & Associations')">UML</button>
+                    <button class="filter-btn" onclick="filterCategory('Héritage & Poly')">Héritage & Poly</button>
+                    <button class="filter-btn" onclick="filterCategory('Exceptions')">Exceptions</button>
+                    <button class="filter-btn" onclick="filterCategory('Qualité & Tests')">Qualité & Tests</button>
+                    <button class="filter-btn" onclick="filterCategory('Flux & Avancé')">Flux & Fichiers</button>
+                </div>
+            </div>
+        </div>
+        <div id="dict-grid-container" style="width: 100%;"></div>
+    </div>
+
+</body>
+</html>
