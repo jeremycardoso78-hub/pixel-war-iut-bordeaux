@@ -144,5 +144,5 @@ const tmp = async () => {
     
 }
 tab();
-setInterval(tab, 10000);
+setInterval(tab, 1000);
 setInterval(tmp, 1000);
